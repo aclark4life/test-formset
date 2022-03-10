@@ -1,13 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import serializers
+from django.forms import formset_factory
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.forms import formset_factory
-from django.shortcuts import render
 
-from project.models import TimeEntry
 from project.forms import TimeEntryForm
+from project.models import TimeEntry
 
 
 class TimeEntryListView(ListView):

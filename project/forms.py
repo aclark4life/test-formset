@@ -1,9 +1,11 @@
 from django import forms
 
+from project.models import TimeEntry
 
-class TimeEntryForm(forms.Form):
+
+class TimeEntryForm(forms.ModelForm):
     """"""
 
     class Meta:
-
-        fields = "__all__"
+        model = TimeEntry
+        fields = ["hours", "date"]
