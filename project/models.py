@@ -2,10 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 
-
 class TimeEntry(models.Model):
-    """ """
-
     class Meta:
         verbose_name_plural = "Time Entries"
 
