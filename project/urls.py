@@ -66,6 +66,7 @@ urlpatterns = urlpatterns + [
         TimeEntryDeleteView.as_view(),
         name="timeentry-delete",
     ),
+    path("time-entries/manage/", project_views.manage_timeentries, name="timeentry-manage"),
 ]
 
 

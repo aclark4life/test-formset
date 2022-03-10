@@ -3,8 +3,11 @@ from django.core import serializers
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.forms import formset_factory
+from django.shortcuts import render
 
 from project.models import TimeEntry
+from project.forms import TimeEntryForm
 
 
 class TimeEntryListView(ListView):
@@ -41,3 +44,15 @@ class TimeEntryUpdateView(LoginRequiredMixin, UpdateView):
 class TimeEntryDeleteView(LoginRequiredMixin, DeleteView):
     model = TimeEntry
     success_url = reverse_lazy("timeentry-list")
+
+
+def manage_timeentries(request):
+    TimeEntryFormSet = formset_factory(TimeEntryForm)
+    if request.method == 'POST':
+        formset = TimeEntryFormSet(request.POST, request.FILES)
+        if formset.is_valid():
+            # do something with the formset.cleaned_data
+            pass
+    else:
+        formset = TimeEntryFormSet()
+    return render(request, 'manage_timeentries.html', {'formset': formset})
