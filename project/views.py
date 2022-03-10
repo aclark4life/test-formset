@@ -47,7 +47,7 @@ class TimeEntryDeleteView(LoginRequiredMixin, DeleteView):
 
 
 def manage_timeentries(request):
-    TimeEntryFormSet = formset_factory(TimeEntryForm)
+    TimeEntryFormSet = formset_factory(TimeEntryForm, can_order=True, can_delete=True)
     if request.method == "POST":
         formset = TimeEntryFormSet(request.POST, request.FILES)
         if formset.is_valid():
