@@ -7,11 +7,9 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-from search import views as search_views
 from project import views as project_views
-from project.views import TimeEntryCreateView
-from project.views import TimeEntryUpdateView
-from project.views import TimeEntryDeleteView
+from project.views import TimeEntryCreateView, TimeEntryDeleteView, TimeEntryUpdateView
+from search import views as search_views
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
