@@ -8,6 +8,10 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
+from project import views as project_views
+from project.views import TimeEntryCreateView
+from project.views import TimeEntryUpdateView
+from project.views import TimeEntryDeleteView
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -44,6 +48,24 @@ urlpatterns = urlpatterns + [
     path("api/", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]
+
+
+urlpatterns = urlpatterns + [
+    path("time-entries/", project_views.TimeEntryListView.as_view(), name="user-list"),
+    path(
+        "time-entries/<int:pk>/detail/",
+        project_views.TimeEntryDetailView.as_view(),
+        name="user-detail",
+    ),
+    path("time-entries/add/", TimeEntryCreateView.as_view(), name="user-add"),
+    path("time-entries/<int:pk>/", TimeEntryUpdateView.as_view(), name="user-update"),
+    path(
+        "time-entries/<int:pk>/delete/",
+        TimeEntryDeleteView.as_view(),
+        name="user-delete",
+    ),
+]
+
 
 urlpatterns = urlpatterns + [
     # For anything not caught by a more specific rule above, hand over to
