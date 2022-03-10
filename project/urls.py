@@ -32,21 +32,21 @@ if settings.DEBUG:
 #     class Meta:
 #         model = User
 #         fields = ["url", "username", "email", "is_staff"]
-# 
-# 
+#
+#
 # class UserViewSet(viewsets.ModelViewSet):
 #     queryset = User.objects.all()
 #     serializer_class = UserSerializer
-# 
-# 
+#
+#
 # router = routers.DefaultRouter()
 # router.register(r"users", UserViewSet)
-# 
+#
 # urlpatterns = urlpatterns + [
 #     path("api/", include(router.urls)),
 #     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 # ]
-# 
+#
 
 urlpatterns = urlpatterns + [
     path(
@@ -60,9 +60,7 @@ urlpatterns = urlpatterns + [
         name="timeentry-detail",
     ),
     path("times/add/", TimeEntryCreateView.as_view(), name="timeentry-add"),
-    path(
-        "times/<int:pk>/", TimeEntryUpdateView.as_view(), name="timeentry-update"
-    ),
+    path("times/<int:pk>/", TimeEntryUpdateView.as_view(), name="timeentry-update"),
     path(
         "times/<int:pk>/delete/",
         TimeEntryDeleteView.as_view(),
