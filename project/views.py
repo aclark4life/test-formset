@@ -50,8 +50,10 @@ def manage_timeentries(request):
 
     context = {}
 
-    extra = request.GET.get("extra", 1)
-    extra = int(extra)
+    extra = request.GET.get("extra")
+
+    if extra:
+        extra = int(extra) + 1
 
     context["extra"] = extra
 
