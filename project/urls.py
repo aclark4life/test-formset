@@ -60,13 +60,19 @@ urlpatterns = urlpatterns + [
         name="timeentry-detail",
     ),
     path("time-entries/add/", TimeEntryCreateView.as_view(), name="timeentry-add"),
-    path("time-entries/<int:pk>/", TimeEntryUpdateView.as_view(), name="timeentry-update"),
+    path(
+        "time-entries/<int:pk>/", TimeEntryUpdateView.as_view(), name="timeentry-update"
+    ),
     path(
         "time-entries/<int:pk>/delete/",
         TimeEntryDeleteView.as_view(),
         name="timeentry-delete",
     ),
-    path("time-entries/manage/", project_views.manage_timeentries, name="timeentry-manage"),
+    path(
+        "time-entries/manage/",
+        project_views.manage_timeentries,
+        name="timeentry-manage",
+    ),
 ]
 
 
