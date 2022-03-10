@@ -1,6 +1,6 @@
 {% extends 'home/home_page.html' %}
 {% block content %}
-    <h2><a href="{% url 'timeentry-list' %}" class="text-decoration-none text-dark">Users</a> &rarr; {{ timeentry }} <a class="btn btn-primary" href="{% url 'timeentry-update' timeentry.pk %}">Edit</a></h2>
+    <h2><a href="{% url 'timeentry-list' %}" class="text-decoration-none text-dark">Time Entries</a> &rarr; {{ timeentry }} <a class="btn btn-primary" href="{% url 'timeentry-update' timeentry.pk %}">Edit</a></h2>
     <ul>
       {% for field in fields %}
       <li>{{ field }}</li>
