@@ -35,9 +35,9 @@ class TimeEntryUpdateView(LoginRequiredMixin, UpdateView):
     fields = ["hours", "date"]
 
     def get_success_url(self):
-        return reverse("user-detail", kwargs={"pk": self.object.pk})
+        return reverse("timeentry-detail", kwargs={"pk": self.object.pk})
 
 
 class TimeEntryDeleteView(LoginRequiredMixin, DeleteView):
     model = TimeEntry
-    success_url = reverse_lazy("user-list")
+    success_url = reverse_lazy("timeentry-list")
