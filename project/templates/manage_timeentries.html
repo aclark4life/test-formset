@@ -1,0 +1,9 @@
+{% extends 'home/home_page.html' %}
+{% block time_entries %}
+<h1>FormSet</h1>
+<form method="post">
+    <table>
+        {{ formset }}
+    </table>
+</form>
+{% endblock %}
