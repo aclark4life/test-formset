@@ -54,6 +54,8 @@ def manage_timeentries(request):
 
     if extra:
         extra = int(extra) + 1
+    else:
+        extra = 1
 
     context["extra"] = extra
 
