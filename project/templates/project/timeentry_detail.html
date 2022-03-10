@@ -1,5 +1,5 @@
 {% extends 'home/home_page.html' %}
-{% block times %}
+{% block time_entries %}
     <h2><a href="{% url 'timeentry-list' %}" class="text-decoration-none text-dark">Time Entries</a> &rarr; {{ timeentry }} <a class="btn btn-primary" href="{% url 'timeentry-update' timeentry.pk %}">Edit</a></h2>
     <ul>
       <li>{{ timeentry.hours }}</li>

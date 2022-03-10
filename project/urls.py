@@ -27,42 +27,42 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# # https://www.django-rest-framework.org/#example
-# class UserSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ["url", "username", "email", "is_staff"]
-#
-#
-# class UserViewSet(viewsets.ModelViewSet):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#
-#
-# router = routers.DefaultRouter()
-# router.register(r"users", UserViewSet)
-#
-# urlpatterns = urlpatterns + [
-#     path("api/", include(router.urls)),
-#     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
-# ]
-#
+# https://www.django-rest-framework.org/#example
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ["url", "username", "email", "is_staff"]
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+router = routers.DefaultRouter()
+router.register(r"users", UserViewSet)
+
+urlpatterns = urlpatterns + [
+    path("api/", include(router.urls)),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+]
+
 
 urlpatterns = urlpatterns + [
     path(
-        "times/",
+        "time-entries/",
         project_views.TimeEntryListView.as_view(),
         name="timeentry-list",
     ),
     path(
-        "times/<int:pk>/detail/",
+        "time-entries/<int:pk>/detail/",
         project_views.TimeEntryDetailView.as_view(),
         name="timeentry-detail",
     ),
-    path("times/add/", TimeEntryCreateView.as_view(), name="timeentry-add"),
-    path("times/<int:pk>/", TimeEntryUpdateView.as_view(), name="timeentry-update"),
+    path("time-entries/add/", TimeEntryCreateView.as_view(), name="timeentry-add"),
+    path("time-entries/<int:pk>/", TimeEntryUpdateView.as_view(), name="timeentry-update"),
     path(
-        "times/<int:pk>/delete/",
+        "time-entries/<int:pk>/delete/",
         TimeEntryDeleteView.as_view(),
         name="timeentry-delete",
     ),
