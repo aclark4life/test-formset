@@ -1,8 +1,12 @@
 {% extends 'home/home_page.html' %}
 {% block time_entries %}
+<div class="btn btn-group btn-group-lg">
+<a class="btn btn-primary" href="{% url 'timeentry-manage' %}?extra={{ extra }}&minus=1">-</a>
+<a class="btn btn-primary" href="{% url 'timeentry-manage' %}?extra={{ extra }}&plus=1">+</a>
+</div>
 <form method="post">
+<table class="table">
   {{ formset }}
+</table>
 </form>
-<a class="text-dark text-decoration-none display-1" href="{% url 'timeentry-manage' %}?extra={{ extra }}&plus=1">+</a>
-<a class="text-dark text-decoration-none display-1" href="{% url 'timeentry-manage' %}?extra={{ extra }}&minus=1">-</a>
 {% endblock %}

@@ -61,12 +61,15 @@ def manage_timeentries(request):
     else:
         extra = 1
 
+    can_delete = False
+    can_order = False
+
     context["extra"] = extra
     context["plus"] = plus
     context["minus"] = minus
 
     TimeEntryFormSet = formset_factory(
-        TimeEntryForm, can_order=True, can_delete=True, extra=extra
+        TimeEntryForm, can_order=can_order, can_delete=can_delete, extra=extra
     )
     if request.method == "POST":
         formset = TimeEntryFormSet(request.POST, request.FILES)
