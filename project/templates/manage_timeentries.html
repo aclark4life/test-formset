@@ -3,6 +3,6 @@
 <form method="post">
   {{ formset }}
 </form>
-<a class="text-dark text-decoration-none display-1" href="{% url 'timeentry-manage' %}?extra={{ extra }}&plus=1">{{ plus }} +</a>
-<a class="text-dark text-decoration-none display-1" href="{% url 'timeentry-manage' %}?extra={{ extra }}&minus=1">{{ minus }}-</a>
+<a class="text-dark text-decoration-none display-1" href="{% url 'timeentry-manage' %}?extra={{ extra }}&plus=1">+</a>
+<a class="text-dark text-decoration-none display-1" href="{% url 'timeentry-manage' %}?extra={{ extra }}&minus=1">-</a>
 {% endblock %}
