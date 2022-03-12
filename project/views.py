@@ -51,13 +51,19 @@ def manage_timeentries(request):
     context = {}
 
     extra = request.GET.get("extra")
+    plus = request.GET.get("plus")
+    minus = request.GET.get("minus")
 
-    if extra:
+    if plus:
         extra = int(extra) + 1
+    elif minus:
+        extra = int(extra) - 1
     else:
         extra = 1
 
     context["extra"] = extra
+    context["plus"] = plus
+    context["minus"] = minus
 
     TimeEntryFormSet = formset_factory(
         TimeEntryForm, can_order=True, can_delete=True, extra=extra
