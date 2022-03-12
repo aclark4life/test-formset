@@ -1,12 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import serializers
-from django.forms import formset_factory
+from django.forms import modelformset_factory
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from project.forms import TimeEntryForm
 from project.models import TimeEntry
 
 
@@ -68,14 +67,18 @@ def manage_timeentries(request):
     context["plus"] = plus
     context["minus"] = minus
 
-    TimeEntryFormSet = formset_factory(
-        TimeEntryForm, can_order=can_order, can_delete=can_delete, extra=extra
+    TimeEntryFormSet = modelformset_factory(
+        TimeEntry,
+        fields=("hours", "date"),
+        can_order=can_order,
+        can_delete=can_delete,
+        extra=extra,
     )
     if request.method == "POST":
         formset = TimeEntryFormSet(request.POST, request.FILES)
         if formset.is_valid():
             # do something with the formset.cleaned_data
-            pass
+            formset.save()
     else:
         formset = TimeEntryFormSet()
 
