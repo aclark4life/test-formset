@@ -4,9 +4,10 @@ from django.forms import modelformset_factory
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView, FormMixin
 
 from project.models import Document
+from project.forms.document import DocumentForm
 
 
 class DocumentListView(ListView):
@@ -32,9 +33,10 @@ class DocumentCreateView(LoginRequiredMixin, CreateView):
     fields = ["time_entry"]
 
 
-class DocumentUpdateView(LoginRequiredMixin, UpdateView):
+class DocumentUpdateView(LoginRequiredMixin, UpdateView, FormMixin):
     model = Document
-    fields = ["time_entry"]
+    # fields = ["time_entry"]
+    form_class = DocumentForm
 
     def get_success_url(self):
         return reverse("document-detail", kwargs={"pk": self.object.pk})
