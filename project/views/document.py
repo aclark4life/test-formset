@@ -60,7 +60,7 @@ def manage_document(request, pk=None):
     else:
         extra = 0
 
-    can_delete = True
+    can_delete = False
     can_order = False
 
     context["extra"] = extra
