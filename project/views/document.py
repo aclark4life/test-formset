@@ -29,12 +29,12 @@ class DocumentDetailView(DetailView):
 
 class DocumentCreateView(LoginRequiredMixin, CreateView):
     model = Document
-    fields = ["hours", "date"]
+    fields = ["time_entry"]
 
 
 class DocumentUpdateView(LoginRequiredMixin, UpdateView):
     model = Document
-    fields = ["hours", "date"]
+    fields = ["time_entry"]
 
     def get_success_url(self):
         return reverse("document-detail", kwargs={"pk": self.object.pk})
@@ -69,7 +69,7 @@ def manage_documents(request):
 
     DocumentFormSet = modelformset_factory(
         Document,
-        fields=("hours", "date"),
+        fields=("time_entry",),
         can_order=can_order,
         can_delete=can_delete,
         extra=extra,

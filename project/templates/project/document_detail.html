@@ -2,7 +2,6 @@
 {% block documents %}
     <h2><a href="{% url 'document-list' %}" class="text-decoration-none text-dark">Documents</a> &rarr; {{ document }} <a class="btn btn-primary" href="{% url 'document-update' document.pk %}">Edit</a></h2>
     <ul>
-      <li>{{ document.hours }}</li>
-      <li>{{ document.date }}</li>
+      <li>{{ document.time_entry }}</li>
     </ul>
 {% endblock %}
