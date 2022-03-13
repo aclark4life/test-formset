@@ -60,7 +60,7 @@ def manage_timeentries(request):
     else:
         extra = 0
 
-    can_delete = False
+    can_delete = True
     can_order = False
 
     context["extra"] = extra

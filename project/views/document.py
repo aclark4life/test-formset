@@ -60,7 +60,7 @@ def manage_document(request, pk=None):
     else:
         extra = 0
 
-    can_delete = False
+    can_delete = True
     can_order = False
 
     context["extra"] = extra
@@ -84,7 +84,7 @@ def manage_document(request, pk=None):
             formset.save()
             return redirect("/")
     else:
-        formset = TimeEntryFormSet()
+        formset = TimeEntryFormSet(instance=document)
 
     context["formset"] = formset
     context["document"] = document
