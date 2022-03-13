@@ -55,6 +55,7 @@ def manage_documents(request):
         fields=[
             "document",
         ],
+        extra=0,
     )
 
     if request.method == "POST":
