@@ -36,8 +36,6 @@ class DocumentUpdateView(LoginRequiredMixin, UpdateView, FormMixin):
     model = Document
     fields = "__all__"
 
-    TimeEntryFormSet = inlineformset_factory(Document, TimeEntry, fields=["hours"])
-
     def get_success_url(self):
         return reverse("document-detail", kwargs={"pk": self.object.pk})
 
@@ -51,39 +49,22 @@ def manage_documents(request):
 
     context = {}
 
-    extra = request.GET.get("extra")
-    plus = request.GET.get("plus")
-    minus = request.GET.get("minus")
-
-    if plus:
-        extra = int(extra) + 1
-    elif minus:
-        extra = int(extra) - 1
-    else:
-        extra = 0
-
-    can_delete = True
-    can_order = False
-
-    context["extra"] = extra
-    context["plus"] = plus
-    context["minus"] = minus
-
-    DocumentFormSet = modelformset_factory(
+    TimeEntryFormSet = inlineformset_factory(
         Document,
-        fields=("time_entry",),
-        can_order=can_order,
-        can_delete=can_delete,
-        extra=extra,
+        TimeEntry,
+        fields=[
+            "document",
+        ],
     )
+
     if request.method == "POST":
-        formset = DocumentFormSet(request.POST, request.FILES)
+        formset = TimeEntryFormSet(request.POST, request.FILES)
         if formset.is_valid():
             # do something with the formset.cleaned_data
             formset.save()
             return redirect("/")
     else:
-        formset = DocumentFormSet()
+        formset = TimeEntryFormSet()
 
     context["formset"] = formset
 

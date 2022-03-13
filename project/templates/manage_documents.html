@@ -1,0 +1,9 @@
+{% extends 'home/home_page.html' %}
+{% block documents %}
+<form method="post">{% csrf_token %}
+<ul> 
+  {{ formset.as_ul }}
+</ul>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit">
+</form>
+{% endblock %}
