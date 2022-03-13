@@ -2,6 +2,10 @@ from django.db import models
 from django.utils import timezone
 
 
+class Document(models.Model):
+    time_entry = models.ForeignKey("TimeEntry", on_delete=models.SET_NULL, null=True)
+
+
 class TimeEntry(models.Model):
     class Meta:
         verbose_name_plural = "Time Entries"
