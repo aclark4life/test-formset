@@ -1,0 +1,8 @@
+{% extends 'home/home_page.html' %}
+{% block documents %}
+<ul>
+  {% for document in object_list %}
+  <li><a href="{% url 'document-detail' document.pk %}">{{ document }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
