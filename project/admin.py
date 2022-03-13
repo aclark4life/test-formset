@@ -1,10 +1,14 @@
 from django.contrib import admin
 
 from project.models import TimeEntry
+from project.models import Document
 
 
-class TimeEntryAdmin(admin.ModelAdmin):
+@admin.register(Document)
+class DocumentAdmin(admin.ModelAdmin):
     """"""
 
 
-admin.site.register(TimeEntry, TimeEntryAdmin)
+@admin.register(TimeEntry)
+class TimeEntryAdmin(admin.ModelAdmin):
+    """"""
