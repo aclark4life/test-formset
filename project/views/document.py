@@ -7,7 +7,6 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView, FormMixin
 
 from project.models import Document
-from project.forms.document import DocumentForm
 
 
 class DocumentListView(ListView):
