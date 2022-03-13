@@ -101,8 +101,8 @@ urlpatterns = urlpatterns + [
         name="document-delete",
     ),
     path(
-        "documents/manage/",
-        document_views.manage_documents,
+        "documents/<int:pk>/manage/",
+        document_views.manage_document,
         name="document-manage",
     ),
 ]

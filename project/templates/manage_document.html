@@ -1,6 +1,8 @@
 {% extends 'home/home_page.html' %}
 {% block documents %}
 <form method="post">{% csrf_token %}
+<a class="btn btn-primary" href="{% url 'document-manage' document.pk %}?extra={{ extra }}&minus=1">-</a>
+<a class="btn btn-primary" href="{% url 'document-manage' document.pk %}?extra={{ extra }}&plus=1">+</a>
 <ul> 
   {{ formset.as_ul }}
 </ul>

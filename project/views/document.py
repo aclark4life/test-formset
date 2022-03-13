@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import serializers
-from django.forms import inlineformset_factory, modelformset_factory
+from django.forms import inlineformset_factory
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
@@ -45,19 +45,38 @@ class DocumentDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("document-list")
 
 
-def manage_documents(request):
+def manage_document(request, pk=None):
 
     context = {}
+
+    extra = request.GET.get("extra")
+    plus = request.GET.get("plus")
+    minus = request.GET.get("minus")
+
+    if plus:
+        extra = int(extra) + 1
+    elif minus:
+        extra = int(extra) - 1
+    else:
+        extra = 0
+
+    can_delete = True
+    can_order = False
+
+    context["extra"] = extra
+    context["plus"] = plus
+    context["minus"] = minus
+
+    document = Document.objects.get(pk=pk)
 
     TimeEntryFormSet = inlineformset_factory(
         Document,
         TimeEntry,
-        fields=[
-            "document",
-        ],
-        extra=0,
+        fields=("hours", "date", "document"),
+        can_order=can_order,
+        can_delete=can_delete,
+        extra=extra,
     )
-
     if request.method == "POST":
         formset = TimeEntryFormSet(request.POST, request.FILES)
         if formset.is_valid():
@@ -68,5 +87,6 @@ def manage_documents(request):
         formset = TimeEntryFormSet()
 
     context["formset"] = formset
+    context["document"] = document
 
-    return render(request, "manage_documents.html", context)
+    return render(request, "manage_document.html", context)
