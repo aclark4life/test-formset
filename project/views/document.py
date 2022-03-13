@@ -1,12 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import serializers
-from django.forms import modelformset_factory
+from django.forms import inlineformset_factory, modelformset_factory
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
 
-from project.models import Document
+from project.models import Document, TimeEntry
 
 
 class DocumentListView(ListView):
@@ -35,6 +35,8 @@ class DocumentCreateView(LoginRequiredMixin, CreateView):
 class DocumentUpdateView(LoginRequiredMixin, UpdateView, FormMixin):
     model = Document
     fields = "__all__"
+
+    TimeEntryFormSet = inlineformset_factory(Document, TimeEntry, fields=["hours"])
 
     def get_success_url(self):
         return reverse("document-detail", kwargs={"pk": self.object.pk})
