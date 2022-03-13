@@ -78,7 +78,7 @@ def manage_document(request, pk=None):
         extra=extra,
     )
     if request.method == "POST":
-        formset = TimeEntryFormSet(request.POST, request.FILES)
+        formset = TimeEntryFormSet(request.POST, request.FILES, instance=document)
         if formset.is_valid():
             # do something with the formset.cleaned_data
             formset.save()
