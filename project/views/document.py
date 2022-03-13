@@ -4,7 +4,7 @@ from django.forms import modelformset_factory
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView, FormMixin
+from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
 
 from project.models import Document
 
