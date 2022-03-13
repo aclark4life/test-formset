@@ -30,13 +30,12 @@ class DocumentDetailView(DetailView):
 
 class DocumentCreateView(LoginRequiredMixin, CreateView):
     model = Document
-    fields = ["time_entry"]
+    fields = "__all__"
 
 
 class DocumentUpdateView(LoginRequiredMixin, UpdateView, FormMixin):
     model = Document
-    # fields = ["time_entry"]
-    form_class = DocumentForm
+    fields = "__all__"
 
     def get_success_url(self):
         return reverse("document-detail", kwargs={"pk": self.object.pk})
