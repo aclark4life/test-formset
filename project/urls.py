@@ -9,6 +9,12 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from project import views as project_views
 from project.views import TimeEntryCreateView, TimeEntryDeleteView, TimeEntryUpdateView
+from project.views import document as document_views
+from project.views.document import (
+    DocumentCreateView,
+    DocumentDeleteView,
+    DocumentUpdateView,
+)
 from search import views as search_views
 
 urlpatterns = [
@@ -72,6 +78,32 @@ urlpatterns = urlpatterns + [
         "time-entries/manage/",
         project_views.manage_timeentries,
         name="timeentry-manage",
+    ),
+]
+
+
+urlpatterns = urlpatterns + [
+    path(
+        "documents/",
+        document_views.DocumentListView.as_view(),
+        name="document-list",
+    ),
+    path(
+        "documents/<int:pk>/detail/",
+        document_views.DocumentDetailView.as_view(),
+        name="document-detail",
+    ),
+    path("documents/add/", DocumentCreateView.as_view(), name="document-add"),
+    path("documents/<int:pk>/", DocumentUpdateView.as_view(), name="document-update"),
+    path(
+        "documents/<int:pk>/delete/",
+        DocumentDeleteView.as_view(),
+        name="document-delete",
+    ),
+    path(
+        "documents/manage/",
+        document_views.manage_documents,
+        name="document-manage",
     ),
 ]
 

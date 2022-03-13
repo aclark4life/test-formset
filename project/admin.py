@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from project.models import TimeEntry
-from project.models import Document
+from project.models import Document, TimeEntry
 
 
 @admin.register(Document)
