@@ -120,7 +120,7 @@ def manage_timesheet(request, pk=None):
             # do something with the formset.cleaned_data
             timeentry_formset.save()
             note_formset.save()
-            return redirect("/")
+            return redirect(reverse("timesheet-detail", kwargs={"pk": pk}))
     else:
         timeentry_formset = TimeEntryFormSet(instance=timesheet, prefix="timeentry")
         note_formset = NoteFormSet(instance=timesheet, prefix="note")
