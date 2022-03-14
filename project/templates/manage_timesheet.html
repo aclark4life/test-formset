@@ -1,6 +1,7 @@
 {% extends 'home/home_page.html' %}
 {% block timesheets %}
 <form method="post">{% csrf_token %}
+<h1>Time Entries</h1>
 <div class="btn-group btn-group-lg py-3">
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?extra={{ extra }}&minus=1">-</a>
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?extra={{ extra }}&plus=1">+</a>
@@ -8,6 +9,7 @@
 <ul> 
   {{ formset.as_ul }}
 </ul>
+<h1>Notes</h1>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit">
 </form>
 {% endblock %}
