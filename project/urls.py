@@ -7,9 +7,13 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-from project import views as project_views
-from project.views import TimeEntryCreateView, TimeEntryDeleteView, TimeEntryUpdateView
+from project.views import timeentry as timeentry_views
 from project.views import timesheet as timesheet_views
+from project.views.timeentry import (
+    TimeEntryCreateView,
+    TimeEntryDeleteView,
+    TimeEntryUpdateView,
+)
 from project.views.timesheet import (
     TimeSheetCreateView,
     TimeSheetDeleteView,
@@ -57,12 +61,12 @@ urlpatterns = urlpatterns + [
 urlpatterns = urlpatterns + [
     path(
         "timeentries/",
-        project_views.TimeEntryListView.as_view(),
+        timeentry_views.TimeEntryListView.as_view(),
         name="timeentry-list",
     ),
     path(
         "timeentries/<int:pk>/detail/",
-        project_views.TimeEntryDetailView.as_view(),
+        timeentry_views.TimeEntryDetailView.as_view(),
         name="timeentry-detail",
     ),
     path("timeentries/add/", TimeEntryCreateView.as_view(), name="timeentry-add"),
@@ -76,7 +80,7 @@ urlpatterns = urlpatterns + [
     ),
     path(
         "timeentries/manage/",
-        project_views.manage_timeentries,
+        timeentry_views.manage_timeentries,
         name="timeentry-manage",
     ),
 ]
