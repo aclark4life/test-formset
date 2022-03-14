@@ -1,6 +1,6 @@
 {% extends 'home/home_page.html' %}
 {% block timesheets %}
-    <h2><a href="{% url 'timesheet-list' %}" class="text-decoration-none text-dark">Time Sheets</a> &rarr; {{ timesheet }} <a class="btn btn-primary" href="{% url 'timesheet-manage' timesheet.pk %}">Edit</a></h2>
+    <h2><a href="{% url 'timesheet-list' %}" class="text-decoration-none text-dark">Time Sheets</a> &rarr; {{ timesheet }} {% if request.user.is_staff %}<a class="btn btn-primary" href="{% url 'timesheet-manage' timesheet.pk %}">Edit</a>{% endif %}</h2>
     <ul>
       {% for timeentry in timesheet.timeentry_set.all %}
       <li><a href="{% url 'timeentry-detail' timeentry.pk %}">{{ timeentry }}</a></li>

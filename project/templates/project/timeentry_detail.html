@@ -1,6 +1,6 @@
 {% extends 'home/home_page.html' %}
 {% block time_entries %}
-    <h2><a href="{% url 'timeentry-list' %}" class="text-decoration-none text-dark">Time Entries</a> &rarr; {{ timeentry }} {% if request.user.is_staff %}<a class="btn btn-primary" href="{% url 'timeentry-update' timeentry.pk %}">Edit</a>{% endif %}</h2>
+    <h2><a href="{% url 'timeentry-list' %}" class="text-decoration-none text-dark">Time Entries</a> &rarr; {{ timeentry }} {% if request.user.is_staff %}{% if request.user.is_staff %}<a class="btn btn-primary" href="{% url 'timeentry-update' timeentry.pk %}">Edit</a>{% endif %}{% endif %}</h2>
     <ul>
       <li>{{ timeentry.hours }}</li>
       <li>{{ timeentry.date }}</li>
