@@ -60,17 +60,18 @@ def manage_timesheet(request, pk=None):
 
     if timeentry_plus:
         timeentry_extra = int(timeentry_extra) + 1
+        note_extra = int(note_extra)
     elif timeentry_minus:
         timeentry_extra = int(timeentry_extra) - 1
-    else:
-        timeentry_extra = 0
-
-    if note_plus:
+        note_extra = int(note_extra)
+    elif note_plus:
+        timeentry_extra = int(timeentry_extra)
         note_extra = int(note_extra) + 1
     elif note_minus:
+        timeentry_extra = int(timeentry_extra)
         note_extra = int(note_extra) - 1
     else:
-        note_extra = 0
+        timeentry_extra = note_extra = 0
 
     timeentry_can_delete = True
     timeentry_can_order = False
