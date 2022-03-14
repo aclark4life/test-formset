@@ -6,7 +6,7 @@
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?extra={{ extra }}&minus=1">-</a>
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?extra={{ extra }}&plus=1">+</a>
 </div>
-<ul> 
+<ul>
   {{ formset.as_ul }}
 </ul>
 <h1>Notes</h1>
