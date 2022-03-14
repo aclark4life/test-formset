@@ -2,6 +2,10 @@ from django.db import models
 from django.utils import timezone
 
 
+class Note(models.Model):
+    text = models.CharField(max_length=2100)
+
+
 class TimeSheet(models.Model):
     class Meta:
         verbose_name_plural = "Time Sheets"
