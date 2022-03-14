@@ -117,7 +117,6 @@ def manage_timesheet(request, pk=None):
         )
 
         if timeentry_formset.is_valid() and note_formset.is_valid():
-            # do something with the formset.cleaned_data
             timeentry_formset.save()
             note_formset.save()
             return redirect(reverse("timesheet-detail", kwargs={"pk": pk}))
