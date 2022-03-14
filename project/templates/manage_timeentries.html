@@ -1,14 +1,15 @@
 {% extends 'home/home_page.html' %}
 {% block time_entries %}
+{% comment %}
 <div class="btn btn-group btn-group-lg">
 {% if request.user.is_staff %}
 <div class="btn-group btn-group-lg py-3">
 <a class="btn btn-outline-dark" href="{% url 'timeentry-manage' %}?extra={{ extra }}&minus=1">-</a>
 <a class="btn btn-outline-dark" href="{% url 'timeentry-manage' %}?extra={{ extra }}&plus=1">+</a>
 </div>
-
 {% endif %}
 </div>
+{% endcomment %}
 <form method="post">{% csrf_token %}
 <ul> 
   {{ formset.as_ul }}
