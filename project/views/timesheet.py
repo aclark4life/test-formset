@@ -121,8 +121,8 @@ def manage_timesheet(request, pk=None):
             note_formset.save()
             return redirect("/")
     else:
-        timeentry_formset = TimeEntryFormSet(instance=timesheet)
-        note_formset = NoteFormSet(instance=timesheet)
+        timeentry_formset = TimeEntryFormSet(instance=timesheet, prefix="timeentry")
+        note_formset = NoteFormSet(instance=timesheet, prefix="note")
 
     context["timeentry_formset"] = timeentry_formset
     context["note_formset"] = note_formset

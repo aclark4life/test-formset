@@ -9,4 +9,9 @@
       {% endfor %}
     </ul>
     <h3>Notes</h3>
+    <ul>
+      {% for note in timesheet.note_set.all %}
+      <li>{{ note }}</li>
+      {% endfor %}
+    </ul>
 {% endblock %}
