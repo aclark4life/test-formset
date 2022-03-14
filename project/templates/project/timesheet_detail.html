@@ -1,0 +1,7 @@
+{% extends 'home/home_page.html' %}
+{% block timesheets %}
+    <h2><a href="{% url 'timesheet-list' %}" class="text-decoration-none text-dark">Time Sheets</a> &rarr; {{ timesheet }} <a class="btn btn-primary" href="{% url 'timesheet-manage' timesheet.pk %}">Edit</a></h2>
+    <ul>
+      <li>{{ timesheet.timeentry_set.all }}</li>
+    </ul>
+{% endblock %}
