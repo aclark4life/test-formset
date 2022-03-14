@@ -28,12 +28,12 @@ class TimeEntryDetailView(DetailView):
 
 class TimeEntryCreateView(LoginRequiredMixin, CreateView):
     model = TimeEntry
-    fields = ["hours", "date", "document"]
+    fields = ["hours", "date", "timesheet"]
 
 
 class TimeEntryUpdateView(LoginRequiredMixin, UpdateView):
     model = TimeEntry
-    fields = ["hours", "date", "document"]
+    fields = ["hours", "date", "timesheet"]
 
     def get_success_url(self):
         return reverse("timeentry-detail", kwargs={"pk": self.object.pk})
@@ -68,7 +68,7 @@ def manage_timeentries(request):
 
     TimeEntryFormSet = modelformset_factory(
         TimeEntry,
-        fields=("hours", "date", "document"),
+        fields=("hours", "date", "timesheet"),
         can_order=can_order,
         can_delete=can_delete,
         extra=extra,
