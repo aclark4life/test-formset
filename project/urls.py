@@ -56,26 +56,26 @@ urlpatterns = urlpatterns + [
 
 urlpatterns = urlpatterns + [
     path(
-        "time-entries/",
+        "timeentries/",
         project_views.TimeEntryListView.as_view(),
         name="timeentry-list",
     ),
     path(
-        "time-entries/<int:pk>/detail/",
+        "timeentries/<int:pk>/detail/",
         project_views.TimeEntryDetailView.as_view(),
         name="timeentry-detail",
     ),
-    path("time-entries/add/", TimeEntryCreateView.as_view(), name="timeentry-add"),
+    path("timeentries/add/", TimeEntryCreateView.as_view(), name="timeentry-add"),
     path(
-        "time-entries/<int:pk>/", TimeEntryUpdateView.as_view(), name="timeentry-update"
+        "timeentries/<int:pk>/", TimeEntryUpdateView.as_view(), name="timeentry-update"
     ),
     path(
-        "time-entries/<int:pk>/delete/",
+        "timeentries/<int:pk>/delete/",
         TimeEntryDeleteView.as_view(),
         name="timeentry-delete",
     ),
     path(
-        "time-entries/manage/",
+        "timeentries/manage/",
         project_views.manage_timeentries,
         name="timeentry-manage",
     ),
