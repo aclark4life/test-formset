@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelformset_factory
 from django.shortcuts import redirect, render
@@ -44,6 +45,7 @@ class TimeEntryDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("timeentry-list")
 
 
+@login_required
 def manage_timeentries(request):
 
     context = {}

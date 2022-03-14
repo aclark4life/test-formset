@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import redirect, render
@@ -44,6 +45,7 @@ class TimeSheetDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("timesheet-list")
 
 
+@login_required
 def manage_timesheet(request, pk=None):
 
     context = {}
