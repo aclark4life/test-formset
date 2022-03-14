@@ -79,15 +79,15 @@ def manage_timesheet(request, pk=None):
         extra=extra,
     )
     if request.method == "POST":
-        formset = TimeEntryFormSet(request.POST, request.FILES, instance=timesheet)
-        if formset.is_valid():
+        timeentry_formset = TimeEntryFormSet(request.POST, request.FILES, instance=timesheet)
+        if timeentry_formset.is_valid():
             # do something with the formset.cleaned_data
-            formset.save()
+            timeentry_formset.save()
             return redirect("/")
     else:
-        formset = TimeEntryFormSet(instance=timesheet)
+        timeentry_formset = TimeEntryFormSet(instance=timesheet)
 
-    context["formset"] = formset
+    context["timeentry_formset"] = timeentry_formset
     context["timesheet"] = timesheet
 
     return render(request, "manage_timesheet.html", context)
