@@ -1,10 +1,15 @@
 from django.contrib import admin
 
-from project.models import TimeEntry, TimeSheet
+from project.models import Note, TimeEntry, TimeSheet
+
+
+@admin.register(Note)
+class NoteAdmin(admin.ModelAdmin):
+    """"""
 
 
 @admin.register(TimeSheet)
-class DocumentAdmin(admin.ModelAdmin):
+class TimeSheetAdmin(admin.ModelAdmin):
     """"""
 
 

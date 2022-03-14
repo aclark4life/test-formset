@@ -4,6 +4,7 @@ from django.utils import timezone
 
 class Note(models.Model):
     text = models.CharField(max_length=2100)
+    timesheet = models.ForeignKey("TimeSheet", on_delete=models.SET_NULL, null=True)
 
 
 class TimeSheet(models.Model):
