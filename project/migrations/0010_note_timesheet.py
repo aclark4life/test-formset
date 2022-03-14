@@ -7,13 +7,17 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('project', '0009_note_alter_timesheet_options'),
+        ("project", "0009_note_alter_timesheet_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='note',
-            name='timesheet',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='project.timesheet'),
+            model_name="note",
+            name="timesheet",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="project.timesheet",
+            ),
         ),
     ]
