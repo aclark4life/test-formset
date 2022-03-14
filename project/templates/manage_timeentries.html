@@ -1,13 +1,15 @@
 {% extends 'home/home_page.html' %}
 {% block time_entries %}
 <div class="btn btn-group btn-group-lg">
+{% if request.user.is_staff %}
 <a class="btn btn-primary" href="{% url 'timeentry-manage' %}?extra={{ extra }}&minus=1">-</a>
 <a class="btn btn-primary" href="{% url 'timeentry-manage' %}?extra={{ extra }}&plus=1">+</a>
+{% endif %}
 </div>
 <form method="post">{% csrf_token %}
 <ul> 
   {{ formset.as_ul }}
 </ul>
-<input class="btn btn-lg btn-primary" type="submit" value="Submit">
+{% if request.user.is_staff %}<input class="btn btn-lg btn-primary" type="submit" value="Submit">{% endif %}
 </form>
 {% endblock %}
