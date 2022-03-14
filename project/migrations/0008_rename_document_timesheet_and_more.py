@@ -6,17 +6,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('project', '0007_remove_document_time_entry_timeentry_document'),
+        ("project", "0007_remove_document_time_entry_timeentry_document"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Document',
-            new_name='TimeSheet',
+            old_name="Document",
+            new_name="TimeSheet",
         ),
         migrations.RenameField(
-            model_name='timeentry',
-            old_name='document',
-            new_name='timesheet',
+            model_name="timeentry",
+            old_name="document",
+            new_name="timesheet",
         ),
     ]

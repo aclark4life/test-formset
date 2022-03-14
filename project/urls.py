@@ -94,7 +94,9 @@ urlpatterns = urlpatterns + [
         name="timesheet-detail",
     ),
     path("timesheets/add/", TimeSheetCreateView.as_view(), name="timesheet-add"),
-    path("timesheets/<int:pk>/", TimeSheetUpdateView.as_view(), name="timesheet-update"),
+    path(
+        "timesheets/<int:pk>/", TimeSheetUpdateView.as_view(), name="timesheet-update"
+    ),
     path(
         "timesheets/<int:pk>/delete/",
         TimeSheetDeleteView.as_view(),

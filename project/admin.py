@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from project.models import TimeSheet, TimeEntry
+from project.models import TimeEntry, TimeSheet
 
 
 @admin.register(TimeSheet)

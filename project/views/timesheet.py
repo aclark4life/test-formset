@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
 
-from project.models import TimeSheet, TimeEntry
+from project.models import TimeEntry, TimeSheet
 
 
 class TimeSheetListView(ListView):
