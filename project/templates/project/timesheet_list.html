@@ -1,8 +1,8 @@
 {% extends 'home/home_page.html' %}
 {% block timesheets %}
-  <ul>
+  <ul class="list-group">
     {% for timesheet in object_list %}
-    <li><a href="{% url 'timesheet-detail' timesheet.pk %}">{{ timesheet }}</a></li>
+    <li class="list-group-item"><a href="{% url 'timesheet-detail' timesheet.pk %}">{{ timesheet }}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}
