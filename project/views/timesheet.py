@@ -53,7 +53,6 @@ def manage_timesheet(request, pk=None):
     note_extra = request.GET.get("note-extra")
     note_plus = request.GET.get("note-plus")
     note_minus = request.GET.get("note-minus")
-
     timeentry_extra = request.GET.get("timeentry-extra")
     timeentry_plus = request.GET.get("timeentry-plus")
     timeentry_minus = request.GET.get("timeentry-minus")
@@ -75,14 +74,12 @@ def manage_timesheet(request, pk=None):
 
     timeentry_can_delete = True
     timeentry_can_order = False
-
     note_can_delete = True
     note_can_order = False
 
     context["timeentry_extra"] = timeentry_extra
     context["timeentry_plus"] = timeentry_plus
     context["timeentry_minus"] = timeentry_minus
-
     context["note_extra"] = note_extra
     context["note_plus"] = note_plus
     context["note_minus"] = note_minus
