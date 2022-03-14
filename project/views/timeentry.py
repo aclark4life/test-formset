@@ -78,7 +78,6 @@ def manage_timeentries(request):
     if request.method == "POST":
         formset = TimeEntryFormSet(request.POST, request.FILES)
         if formset.is_valid():
-            # do something with the formset.cleaned_data
             formset.save()
             return redirect("/")
     else:
