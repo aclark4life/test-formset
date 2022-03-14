@@ -1,7 +1,0 @@
-{% extends 'home/home_page.html' %}
-{% block documents %}
-    <h2><a href="{% url 'document-list' %}" class="text-decoration-none text-dark">Documents</a> &rarr; {{ document }} <a class="btn btn-primary" href="{% url 'document-manage' document.pk %}">Edit</a></h2>
-    <ul>
-      <li>{{ document.timeentry_set.all }}</li>
-    </ul>
-{% endblock %}

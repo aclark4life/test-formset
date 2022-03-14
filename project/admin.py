@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from project.models import Document, TimeEntry
+from project.models import TimeSheet, TimeEntry
 
 
-@admin.register(Document)
+@admin.register(TimeSheet)
 class DocumentAdmin(admin.ModelAdmin):
     """"""
 

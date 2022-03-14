@@ -9,11 +9,11 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from project import views as project_views
 from project.views import TimeEntryCreateView, TimeEntryDeleteView, TimeEntryUpdateView
-from project.views import document as document_views
-from project.views.document import (
-    DocumentCreateView,
-    DocumentDeleteView,
-    DocumentUpdateView,
+from project.views import timesheet as timesheet_views
+from project.views.timesheet import (
+    TimeSheetCreateView,
+    TimeSheetDeleteView,
+    TimeSheetUpdateView,
 )
 from search import views as search_views
 
@@ -84,26 +84,26 @@ urlpatterns = urlpatterns + [
 
 urlpatterns = urlpatterns + [
     path(
-        "documents/",
-        document_views.DocumentListView.as_view(),
-        name="document-list",
+        "timesheets/",
+        timesheet_views.TimeSheetListView.as_view(),
+        name="timesheet-list",
     ),
     path(
-        "documents/<int:pk>/detail/",
-        document_views.DocumentDetailView.as_view(),
-        name="document-detail",
+        "timesheets/<int:pk>/detail/",
+        timesheet_views.TimeSheetDetailView.as_view(),
+        name="timesheet-detail",
     ),
-    path("documents/add/", DocumentCreateView.as_view(), name="document-add"),
-    path("documents/<int:pk>/", DocumentUpdateView.as_view(), name="document-update"),
+    path("timesheets/add/", TimeSheetCreateView.as_view(), name="timesheet-add"),
+    path("timesheets/<int:pk>/", TimeSheetUpdateView.as_view(), name="timesheet-update"),
     path(
-        "documents/<int:pk>/delete/",
-        DocumentDeleteView.as_view(),
-        name="document-delete",
+        "timesheets/<int:pk>/delete/",
+        TimeSheetDeleteView.as_view(),
+        name="timesheet-delete",
     ),
     path(
-        "documents/<int:pk>/manage/",
-        document_views.manage_document,
-        name="document-manage",
+        "timesheets/<int:pk>/manage/",
+        timesheet_views.manage_timesheet,
+        name="timesheet-manage",
     ),
 ]
 

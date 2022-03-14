@@ -5,15 +5,15 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
 
-from project.models import Document, TimeEntry
+from project.models import TimeSheet, TimeEntry
 
 
-class DocumentListView(ListView):
-    model = Document
+class TimeSheetListView(ListView):
+    model = TimeSheet
 
 
-class DocumentDetailView(DetailView):
-    model = Document
+class TimeSheetDetailView(DetailView):
+    model = TimeSheet
 
     # https://docs.djangoproject.com/en/4.0/topics/class-based-views/generic-display/#adding-extra-context
     def get_context_data(self, **kwargs):
@@ -26,25 +26,25 @@ class DocumentDetailView(DetailView):
         return context
 
 
-class DocumentCreateView(LoginRequiredMixin, CreateView):
-    model = Document
+class TimeSheetCreateView(LoginRequiredMixin, CreateView):
+    model = TimeSheet
     fields = "__all__"
 
 
-class DocumentUpdateView(LoginRequiredMixin, UpdateView, FormMixin):
-    model = Document
+class TimeSheetUpdateView(LoginRequiredMixin, UpdateView, FormMixin):
+    model = TimeSheet
     fields = "__all__"
 
     def get_success_url(self):
-        return reverse("document-detail", kwargs={"pk": self.object.pk})
+        return reverse("timesheet-detail", kwargs={"pk": self.object.pk})
 
 
-class DocumentDeleteView(LoginRequiredMixin, DeleteView):
-    model = Document
-    success_url = reverse_lazy("document-list")
+class TimeSheetDeleteView(LoginRequiredMixin, DeleteView):
+    model = TimeSheet
+    success_url = reverse_lazy("timesheet-list")
 
 
-def manage_document(request, pk=None):
+def manage_timesheet(request, pk=None):
 
     context = {}
 
@@ -66,26 +66,26 @@ def manage_document(request, pk=None):
     context["plus"] = plus
     context["minus"] = minus
 
-    document = Document.objects.get(pk=pk)
+    timesheet = TimeSheet.objects.get(pk=pk)
 
     TimeEntryFormSet = inlineformset_factory(
-        Document,
+        TimeSheet,
         TimeEntry,
-        fields=("hours", "date", "document"),
+        fields=("hours", "date", "timesheet"),
         can_order=can_order,
         can_delete=can_delete,
         extra=extra,
     )
     if request.method == "POST":
-        formset = TimeEntryFormSet(request.POST, request.FILES, instance=document)
+        formset = TimeEntryFormSet(request.POST, request.FILES, instance=timesheet)
         if formset.is_valid():
             # do something with the formset.cleaned_data
             formset.save()
             return redirect("/")
     else:
-        formset = TimeEntryFormSet(instance=document)
+        formset = TimeEntryFormSet(instance=timesheet)
 
     context["formset"] = formset
-    context["document"] = document
+    context["timesheet"] = timesheet
 
-    return render(request, "manage_document.html", context)
+    return render(request, "manage_timesheet.html", context)
