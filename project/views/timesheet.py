@@ -4,7 +4,8 @@ from django.forms import inlineformset_factory
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
+from django.views.generic.edit import (CreateView, DeleteView, FormMixin,
+                                       UpdateView)
 
 from project.models import Note, TimeEntry, TimeSheet
 

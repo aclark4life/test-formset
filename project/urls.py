@@ -9,16 +9,10 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from project.views import timeentry as timeentry_views
 from project.views import timesheet as timesheet_views
-from project.views.timeentry import (
-    TimeEntryCreateView,
-    TimeEntryDeleteView,
-    TimeEntryUpdateView,
-)
-from project.views.timesheet import (
-    TimeSheetCreateView,
-    TimeSheetDeleteView,
-    TimeSheetUpdateView,
-)
+from project.views.timeentry import (TimeEntryCreateView, TimeEntryDeleteView,
+                                     TimeEntryUpdateView)
+from project.views.timesheet import (TimeSheetCreateView, TimeSheetDeleteView,
+                                     TimeSheetUpdateView)
 from search import views as search_views
 
 urlpatterns = [
