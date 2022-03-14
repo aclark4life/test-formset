@@ -3,7 +3,8 @@ from django.utils import timezone
 
 
 class TimeSheet(models.Model):
-    """"""
+    class Meta:
+        verbose_name_plural = "Time Sheets"
 
 
 class TimeEntry(models.Model):
