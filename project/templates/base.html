@@ -25,15 +25,22 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Navbar</a>
+        </div>
+      </nav>
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
+      {% wagtailuserbar %}
 
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
+      {% block content %}{% endblock %}
+
+      {# Global javascript #}
+      <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
+
+      {% block extra_js %}
+          {# Override this in templates to add extra javascript #}
+      {% endblock %}
     </body>
 </html>
