@@ -50,23 +50,23 @@ def manage_timesheet(request, pk=None):
 
     context = {}
 
-    extra = request.GET.get("extra")
-    plus = request.GET.get("plus")
-    minus = request.GET.get("minus")
+    timeentry_extra = request.GET.get("timeentry-extra")
+    timeentry_plus = request.GET.get("timeentry-plus")
+    timeentry_minus = request.GET.get("timeentry-minus")
 
-    if plus:
-        extra = int(extra) + 1
-    elif minus:
-        extra = int(extra) - 1
+    if timeentry_plus:
+        timeentry_extra = int(timeentry_extra) + 1
+    elif timeentry_minus:
+        timeentry_extra = int(timeentry_extra) - 1
     else:
-        extra = 0
+        timeentry_extra = 0
 
-    can_delete = True
-    can_order = False
+    timeentry_can_delete = True
+    timeentry_can_order = False
 
-    context["extra"] = extra
-    context["plus"] = plus
-    context["minus"] = minus
+    context["timeentry_extra"] = timeentry_extra
+    context["timeentry_plus"] = timeentry_plus
+    context["timeentry_minus"] = timeentry_minus
 
     timesheet = TimeSheet.objects.get(pk=pk)
 
@@ -74,9 +74,9 @@ def manage_timesheet(request, pk=None):
         TimeSheet,
         TimeEntry,
         fields=("hours", "date", "timesheet"),
-        can_order=can_order,
-        can_delete=can_delete,
-        extra=extra,
+        can_order=timeentry_can_order,
+        can_delete=timeentry_can_delete,
+        extra=timeentry_extra,
     )
     if request.method == "POST":
         timeentry_formset = TimeEntryFormSet(request.POST, request.FILES, instance=timesheet)
