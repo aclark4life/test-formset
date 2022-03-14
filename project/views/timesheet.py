@@ -100,7 +100,7 @@ def manage_timesheet(request, pk=None):
     NoteFormSet = inlineformset_factory(
         TimeSheet,
         Note,
-        fields=("timesheet",),
+        fields=("text", "timesheet"),
         can_order=note_can_order,
         can_delete=note_can_delete,
         extra=note_extra,
@@ -108,9 +108,13 @@ def manage_timesheet(request, pk=None):
 
     if request.method == "POST":
         timeentry_formset = TimeEntryFormSet(
-            request.POST, request.FILES, instance=timesheet
+            request.POST, request.FILES, instance=timesheet, prefix="timeentry"
         )
-        note_formset = NoteFormSet(request.POST, request.FILES, instance=timesheet)
+
+        note_formset = NoteFormSet(
+            request.POST, request.FILES, instance=timesheet, prefix="note"
+        )
+
         if timeentry_formset.is_valid() and note_formset.is_valid():
             # do something with the formset.cleaned_data
             timeentry_formset.save()
