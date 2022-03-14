@@ -1,7 +1,7 @@
 {% extends 'home/home_page.html' %}
 {% block timesheets %}
-    <form method="post" class="form">{% csrf_token %}
-    <h2><a href="{% url 'timesheet-list' %}" class="text-decoration-none text-dark">Time Sheets</a> &rarr; {{ timesheet }} <input class="btn btn-primary" type="submit" value="Save"></h2>
-    {{ form }}
-    </form>
+  <form method="post" class="form">{% csrf_token %}
+  <h2><a href="{% url 'timesheet-list' %}" class="text-decoration-none text-dark">Time Sheets</a> &rarr; {{ timesheet }} <input class="btn btn-primary" type="submit" value="Save"></h2>
+  {{ form }}
+  </form>
 {% endblock %}

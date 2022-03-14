@@ -1,8 +1,8 @@
 {% extends 'home/home_page.html' %}
 {% block timesheets %}
-<ul>
-  {% for timesheet in object_list %}
-  <li><a href="{% url 'timesheet-detail' timesheet.pk %}">{{ timesheet }}</a></li>
-  {% endfor %}
-</ul>
+  <ul>
+    {% for timesheet in object_list %}
+    <li><a href="{% url 'timesheet-detail' timesheet.pk %}">{{ timesheet }}</a></li>
+    {% endfor %}
+  </ul>
 {% endblock %}

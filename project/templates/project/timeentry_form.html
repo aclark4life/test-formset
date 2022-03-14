@@ -1,7 +1,7 @@
 {% extends 'home/home_page.html' %}
 {% block time_entries %}
     <form method="post" class="form">{% csrf_token %}
-    <h2><a href="{% url 'timeentry-list' %}" class="text-decoration-none text-dark">Time Entries</a> &rarr; {{ timeentry }} <input class="btn btn-primary" type="submit" value="Save"></h2>
+    <h2><a href="{% url 'timeentry-list' %}" class="text-decoration-none text-dark">Time Entries</a> &rarr; {{ timeentry }} <input class="btn btn-outline-dark" type="submit" value="Save"></h2>
     {{ form }}
     </form>
 {% endblock %}

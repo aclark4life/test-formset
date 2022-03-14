@@ -1,10 +1,8 @@
 {% extends 'home/home_page.html' %}
 {% block time_entries %}
-
-    <ul>
-        {% for timeentry in object_list %}
-            <li><a href="{% url 'timeentry-detail' timeentry.pk %}">{{ timeentry }}</a></li>
-        {% endfor %}
-    </ul>
-
+  <ul class="list-group">
+  {% for timeentry in object_list %}
+    <li class="list-group-item"><a href="{% url 'timeentry-detail' timeentry.pk %}">{{ timeentry }}</a></li>
+  {% endfor %}
+  </ul>
 {% endblock %}

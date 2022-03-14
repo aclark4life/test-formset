@@ -1,17 +1,17 @@
 {% extends 'home/home_page.html' %}
 {% block timesheets %}
-    <h2><a href="{% url 'timesheet-list' %}" class="text-decoration-none text-dark">Time Sheets</a> &rarr; {{ timesheet }} {% if request.user.is_staff %}<a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}">Edit</a>{% endif %}</h2>
+  <h2><a href="{% url 'timesheet-list' %}" class="text-decoration-none text-dark">Time Sheets</a> &rarr; {{ timesheet }} {% if request.user.is_staff %}<a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}">Edit</a>{% endif %}</h2>
 
-    <h3>Time Entries</h3>
-    <ul>
-      {% for timeentry in timesheet.timeentry_set.all %}
-      <li><a href="{% url 'timeentry-detail' timeentry.pk %}">{{ timeentry }}</a></li>
-      {% endfor %}
-    </ul>
-    <h3>Notes</h3>
-    <ul>
-      {% for note in timesheet.note_set.all %}
-      <li>{{ note }}</li>
-      {% endfor %}
-    </ul>
+  <h3>Time Entries</h3>
+  <ul>
+    {% for timeentry in timesheet.timeentry_set.all %}
+    <li><a href="{% url 'timeentry-detail' timeentry.pk %}">{{ timeentry }}</a></li>
+    {% endfor %}
+  </ul>
+  <h3>Notes</h3>
+  <ul>
+    {% for note in timesheet.note_set.all %}
+    <li>{{ note }}</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
