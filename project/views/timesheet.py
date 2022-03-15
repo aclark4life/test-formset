@@ -5,8 +5,7 @@ from django.forms import inlineformset_factory
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import (CreateView, DeleteView, FormMixin,
-                                       UpdateView)
+from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
 
 from project.models import Note, TimeEntry, TimeSheet
 
@@ -118,8 +117,8 @@ def manage_timesheet(request, pk=None):
         extra=note_extra,
     )
 
-    timeentry_formset_helper = TimeEntryFormSetHelper()
-    note_formset_helper = NoteFormSetHelper()
+    formset_helper_timeentry = TimeEntryFormSetHelper()
+    formset_helper_note = NoteFormSetHelper()
 
     if request.method == "POST":
         timeentry_formset = TimeEntryFormSet(
@@ -141,7 +140,7 @@ def manage_timesheet(request, pk=None):
     context["timeentry_formset"] = timeentry_formset
     context["note_formset"] = note_formset
     context["timesheet"] = timesheet
-    context["timeentry_formset_helper"] = timeentry_formset_helper
-    context["note_formset_helper"] = note_formset_helper
+    context["formset_helper_timeentry"] = formset_helper_timeentry
+    context["formset_helper_note"] = formset_helper_note
 
     return render(request, "manage_timesheet.html", context)
