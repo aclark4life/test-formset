@@ -7,13 +7,13 @@
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?timeentry-extra={{ timeentry_extra }}&timeentry-minus=1&note-extra={{ note_extra }}">-</a>
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?timeentry-extra={{ timeentry_extra }}&timeentry-plus=1&note-extra={{ note_extra }}">+</a>
 </div>
-{% crispy timeentry_formset timeentry_formset_helper %}
+{% crispy timeentry_formset formset_helper_timesheet %}
 <h1>Notes</h1>
 <div class="btn-group btn-group-lg py-3">
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?note-extra={{ note_extra }}&note-minus=1&timeentry-extra={{ timeentry_extra }}">-</a>
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?note-extra={{ note_extra }}&note-plus=1&timeentry-extra={{ timeentry_extra}}">+</a>
 </div>
-{% crispy note_formset note_formset_helper %}
+{% crispy note_formset formset_helper_note %}
 <input class="btn btn-lg btn-outline-dark" type="submit" value="Save">
 </form>
 {% endblock %}
