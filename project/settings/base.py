@@ -25,6 +25,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     "crispy_forms",
+    "crispy_bootstrap5",
     "home",
     "project",
     "search",
@@ -193,3 +194,7 @@ REST_FRAMEWORK = {
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
