@@ -45,6 +45,18 @@ class TimeSheetDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("timesheet-list")
 
 
+class TimeEntryFormSetHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.form_tag = False
+
+
+class NoteFormSetHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.form_tag = False
+
+
 @login_required
 def manage_timesheet(request, pk=None):
 
@@ -104,6 +116,9 @@ def manage_timesheet(request, pk=None):
         extra=note_extra,
     )
 
+    timeentry_formset_helper = TimeEntryFormSetHelper()
+    note_formset_helper = NoteFormSetHelper()
+
     if request.method == "POST":
         timeentry_formset = TimeEntryFormSet(
             request.POST, request.FILES, instance=timesheet, prefix="timeentry"
@@ -124,5 +139,7 @@ def manage_timesheet(request, pk=None):
     context["timeentry_formset"] = timeentry_formset
     context["note_formset"] = note_formset
     context["timesheet"] = timesheet
+    context["timeentry_formset_helper"] = timeentry_formset_helper
+    context["note_formset_helper"] = note_formset_helper
 
     return render(request, "manage_timesheet.html", context)
