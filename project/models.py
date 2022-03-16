@@ -1,6 +1,6 @@
+import recurrence.fields
 from django.db import models
 from django.utils import timezone
-import recurrence.fields
 
 
 # https://github.com/jazzband/django-recurrence#functionality

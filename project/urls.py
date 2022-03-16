@@ -39,7 +39,7 @@ if settings.DEBUG:
 
     # debug toolbar
     urlpatterns = urlpatterns + [
-        path('__debug__/', include('debug_toolbar.urls')),
+        path("__debug__/", include("debug_toolbar.urls")),
     ]
 
 # https://www.django-rest-framework.org/#example
