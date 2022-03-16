@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.urls import include, path
-# from django.views.i18n import JavaScriptCatalog
+from django.views.i18n import JavaScriptCatalog
 from rest_framework import routers, serializers, viewsets
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
@@ -119,9 +119,9 @@ urlpatterns = urlpatterns + [
     ),
 ]
 
-# urlpatterns = urlpatterns + [
-#     path("jsi18n/", JavaScriptCatalog.as_view(), name="jsi18n"),
-# ]
+urlpatterns = urlpatterns + [
+    path("jsi18n/", JavaScriptCatalog.as_view(), name="jsi18n"),
+]
 
 
 urlpatterns = urlpatterns + [
