@@ -37,6 +37,11 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+    # debug toolbar
+    urlpatterns = urlpatterns + [
+        path('__debug__/', include('debug_toolbar.urls')),
+    ]
+
 # https://www.django-rest-framework.org/#example
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
