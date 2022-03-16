@@ -5,9 +5,9 @@ from django.utils import timezone
 
 # https://github.com/jazzband/django-recurrence#functionality
 class Course(models.Model):
-    title = models.CharField(max_length=200)
-    start = models.TimeField()
-    end = models.TimeField()
+    # title = models.CharField(max_length=200)
+    # start = models.TimeField()
+    # end = models.TimeField()
     recurrences = recurrence.fields.RecurrenceField()
     timesheet = models.ForeignKey("TimeSheet", on_delete=models.SET_NULL, null=True)
 
