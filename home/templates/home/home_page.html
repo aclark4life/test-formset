@@ -14,7 +14,6 @@
     <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
       <a type="button" class="btn btn-primary" href="{% url 'admin:index' %}" target="_blank" role="button">Django Admin</a>
       <a type="button" class="btn btn-primary" href="/api" target="_blank" role="button">Web Browseable API</a>
-      <a type="button" class="btn btn-primary" href="{% url 'timeentry-list' %}" role="button">Time Entries List</a>
       <a type="button" class="btn btn-primary" href="{% url 'timesheet-list' %}" role="button">Time Sheet List</a>
     </div>
     {% block time_entries %}{% endblock %}
