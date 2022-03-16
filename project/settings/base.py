@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "home",
     "project",
+    "recurrence",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
