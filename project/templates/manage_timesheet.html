@@ -1,20 +1,25 @@
 {% extends 'home/home_page.html' %}
 {% load crispy_forms_tags %}
 {% block timesheets %}
-<form method="post">{% csrf_token %}
-<h1>Time Entries</h1>
-<div class="btn-group btn-group-lg py-3">
-<a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?timeentry-extra={{ timeentry_extra }}&timeentry-minus=1&note-extra={{ note_extra }}">-</a>
-<a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?timeentry-extra={{ timeentry_extra }}&timeentry-plus=1&note-extra={{ note_extra }}">+</a>
-</div>
-{% for form in timeentry_formset %}{{ form.changed_data }}{% endfor %}
-{% crispy timeentry_formset formset_helper_timeentry %}
-<h1>Notes</h1>
-<div class="btn-group btn-group-lg py-3">
-<a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?note-extra={{ note_extra }}&note-minus=1&timeentry-extra={{ timeentry_extra }}">-</a>
-<a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?note-extra={{ note_extra }}&note-plus=1&timeentry-extra={{ timeentry_extra}}">+</a>
-</div>
-{% crispy note_formset formset_helper_note %}
-<input class="btn btn-lg btn-outline-dark" type="submit" value="Save">
-</form>
+    <form method="post">{% csrf_token %}
+        <h1>Time Entries</h1>
+        <div class="btn-group btn-group-lg py-3">
+            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?timeentry-extra={{ timeentry_extra }}&timeentry-minus=1&note-extra={{ note_extra }}&course-extra={{ course_extra }}">-</a>
+            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?timeentry-extra={{ timeentry_extra }}&timeentry-plus=1&note-extra={{ note_extra }}&course-extra={{ course_extra }}">+</a>
+        </div>
+        {% crispy timeentry_formset formset_helper_timeentry %}
+        <h1>Notes</h1>
+        <div class="btn-group btn-group-lg py-3">
+            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?note-extra={{ note_extra }}&note-minus=1&timeentry-extra={{ timeentry_extra }}&course-extra={{ course_extra }}">-</a>
+            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?note-extra={{ note_extra }}&note-plus=1&timeentry-extra={{ timeentry_extra}}&course-extra={{ course_extra }}">+</a>
+        </div>
+        {% crispy note_formset formset_helper_note %}
+        <h1>Courses</h1>
+        <div class="btn-group btn-group-lg py-3">
+            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?course-extra={{ course_extra }}&course-minus=1&timeentry-extra={{ timeentry_extra }}">-</a>
+            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?course-extra={{ course_extra }}&course-plus=1&timeentry-extra={{ timeentry_extra}}">+</a>
+        </div>
+        {% crispy course_formset formset_helper_course %}
+        <input class="btn btn-lg btn-outline-dark" type="submit" value="Save">
+    </form>
 {% endblock %}

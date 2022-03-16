@@ -7,7 +7,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
 
-from project.models import Note, TimeEntry, TimeSheet
+from project.models import Course, Note, TimeEntry, TimeSheet
 
 
 class TimeSheetListView(ListView):
@@ -58,11 +58,20 @@ class NoteFormSetHelper(FormHelper):
         self.form_tag = False
 
 
+class CourseFormSetHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.form_tag = False
+
+
 @login_required
 def manage_timesheet(request, pk=None):
 
     context = {}
 
+    course_extra = request.GET.get("course-extra")
+    course_plus = request.GET.get("course-plus")
+    course_minus = request.GET.get("course-minus")
     note_extra = request.GET.get("note-extra")
     note_plus = request.GET.get("note-plus")
     note_minus = request.GET.get("note-minus")
@@ -73,22 +82,36 @@ def manage_timesheet(request, pk=None):
     if timeentry_plus:
         timeentry_extra = int(timeentry_extra) + 1
         note_extra = int(note_extra)
+        course_extra = int(course_extra)
     elif timeentry_minus:
         timeentry_extra = int(timeentry_extra) - 1
         note_extra = int(note_extra)
+        course_extra = int(course_extra)
     elif note_plus:
         timeentry_extra = int(timeentry_extra)
         note_extra = int(note_extra) + 1
+        course_extra = int(course_extra)
     elif note_minus:
         timeentry_extra = int(timeentry_extra)
         note_extra = int(note_extra) - 1
+        course_extra = int(course_extra)
+    elif course_plus:
+        timeentry_extra = int(timeentry_extra)
+        note_extra = int(note_extra)
+        course_extra = int(course_extra) + 1
+    elif course_minus:
+        timeentry_extra = int(timeentry_extra)
+        note_extra = int(note_extra)
+        course_extra = int(course_extra) - 1
     else:
-        timeentry_extra = note_extra = 0
+        timeentry_extra = note_extra = course_extra = 0
 
     timeentry_can_delete = True
     timeentry_can_order = False
     note_can_delete = True
     note_can_order = False
+    course_can_delete = True
+    course_can_order = False
 
     context["timeentry_extra"] = timeentry_extra
     context["timeentry_plus"] = timeentry_plus
@@ -96,6 +119,9 @@ def manage_timesheet(request, pk=None):
     context["note_extra"] = note_extra
     context["note_plus"] = note_plus
     context["note_minus"] = note_minus
+    context["course_extra"] = course_extra
+    context["course_plus"] = course_plus
+    context["course_minus"] = course_minus
 
     timesheet = TimeSheet.objects.get(pk=pk)
 
@@ -117,8 +143,18 @@ def manage_timesheet(request, pk=None):
         extra=note_extra,
     )
 
+    CourseFormSet = inlineformset_factory(
+        TimeSheet,
+        Course,
+        fields=("recurrences", "timesheet"),
+        can_order=course_can_order,
+        can_delete=course_can_delete,
+        extra=course_extra,
+    )
+
     formset_helper_timeentry = TimeEntryFormSetHelper()
     formset_helper_note = NoteFormSetHelper()
+    formset_helper_course = CourseFormSetHelper()
 
     if request.method == "POST":
         timeentry_formset = TimeEntryFormSet(
@@ -129,18 +165,30 @@ def manage_timesheet(request, pk=None):
             request.POST, request.FILES, instance=timesheet, prefix="note"
         )
 
-        if timeentry_formset.is_valid() and note_formset.is_valid():
+        course_formset = CourseFormSet(
+            request.POST, request.FILES, instance=timesheet, prefix="course"
+        )
+
+        if (
+            timeentry_formset.is_valid()
+            and note_formset.is_valid()
+            and course_formset.is_valid()
+        ):
             timeentry_formset.save()
             note_formset.save()
+            course_formset.save()
             return redirect(reverse("timesheet-detail", kwargs={"pk": pk}))
     else:
         timeentry_formset = TimeEntryFormSet(instance=timesheet, prefix="timeentry")
         note_formset = NoteFormSet(instance=timesheet, prefix="note")
+        course_formset = CourseFormSet(instance=timesheet, prefix="course")
 
     context["timeentry_formset"] = timeentry_formset
     context["note_formset"] = note_formset
+    context["course_formset"] = course_formset
     context["timesheet"] = timesheet
     context["formset_helper_timeentry"] = formset_helper_timeentry
     context["formset_helper_note"] = formset_helper_note
+    context["formset_helper_course"] = formset_helper_course
 
     return render(request, "manage_timesheet.html", context)
