@@ -62,6 +62,7 @@ class CourseFormSetHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.form_tag = False
+        self.include_media = True
 
 
 @login_required
