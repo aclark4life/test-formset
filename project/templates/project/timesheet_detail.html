@@ -14,4 +14,10 @@
     <li>{{ note }}</li>
     {% endfor %}
   </ul>
+  <h3>Courses</h3>
+  <ul>
+    {% for course in timesheet.course_set.all %}
+    <li>{{ course }}</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
