@@ -7,6 +7,7 @@
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?timeentry-extra={{ timeentry_extra }}&timeentry-minus=1&note-extra={{ note_extra }}">-</a>
 <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?timeentry-extra={{ timeentry_extra }}&timeentry-plus=1&note-extra={{ note_extra }}">+</a>
 </div>
+{% for form in timeentry_formset %}{{ form.changed_data }}{% endfor %}
 {% crispy timeentry_formset formset_helper_timeentry %}
 <h1>Notes</h1>
 <div class="btn-group btn-group-lg py-3">
