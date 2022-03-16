@@ -16,8 +16,8 @@
         {% crispy note_formset formset_helper_note %}
         <h1>Courses</h1>
         <div class="btn-group btn-group-lg py-3">
-            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?course-extra={{ course_extra }}&course-minus=1&timeentry-extra={{ timeentry_extra }}">-</a>
-            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?course-extra={{ course_extra }}&course-plus=1&timeentry-extra={{ timeentry_extra}}">+</a>
+            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?course-extra={{ course_extra }}&course-minus=1&timeentry-extra={{ timeentry_extra }}&note-extra={{ note_extra }}">-</a>
+            <a class="btn btn-outline-dark" href="{% url 'timesheet-manage' timesheet.pk %}?course-extra={{ course_extra }}&course-plus=1&timeentry-extra={{ timeentry_extra}}&note-extra={{ note_extra }}">+</a>
         </div>
         {% crispy course_formset formset_helper_course %}
         <input class="btn btn-lg btn-outline-dark" type="submit" value="Save">
